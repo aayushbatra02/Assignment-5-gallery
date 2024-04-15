@@ -1,5 +1,5 @@
 const imageModal = document.getElementById("image-modal");
-const selectedImage = document.getElementById("image-image");
+const selectedImage = document.getElementById("selected-image");
 const nextButton = document.getElementById("next-button");
 const prevoiusButton = document.getElementById("previous-button");
 const imageContainer = document.getElementById("image-container");
@@ -34,6 +34,8 @@ const data = {
   ],
 };
 
+let selectedImageNumber;
+
 //create images
 for (let i = 0; i < data.images.length; i++) {
   const image = document.createElement("img");
@@ -42,19 +44,18 @@ for (let i = 0; i < data.images.length; i++) {
   image.addEventListener("click", () => {
     imageModal.style.display = "flex";
     selectedImage.setAttribute("src", `/images/image${i + 1}.avif`);
-    mainImageNumber = i + 1;
+    selectedImageNumber = i + 1;
     enableDisableNavButtons();
   });
   galleryContainer.appendChild(image);
 }
 
-let mainImageNumber;
 
 const enableDisableNavButtons = () => {
-  if (mainImageNumber === data.images.length) {
+  if (selectedImageNumber === data.images.length) {
     nextButton.style.display = "none";
     prevoiusButton.style.visibility = "visible";
-  } else if (mainImageNumber === 1) {
+  } else if (selectedImageNumber === 1) {
     prevoiusButton.style.visibility = "hidden";
     nextButton.style.display = "block";
   } else {
@@ -64,17 +65,17 @@ const enableDisableNavButtons = () => {
 };
 
 nextButton.addEventListener("click", () => {
-  if (mainImageNumber < data.images.length) {
-    mainImageNumber++;
-    selectedImage.setAttribute("src", `/images/image${mainImageNumber}.avif`);
+  if (selectedImageNumber < data.images.length) {
+    selectedImageNumber++;
+    selectedImage.setAttribute("src", `/images/image${selectedImageNumber}.avif`);
   }
   enableDisableNavButtons();
 });
 
 prevoiusButton.addEventListener("click", () => {
-  if (mainImageNumber >= 0) {
-    mainImageNumber--;
-    selectedImage.setAttribute("src", `/images/image${mainImageNumber}.avif`);
+  if (selectedImageNumber >= 0) {
+    selectedImageNumber--;
+    selectedImage.setAttribute("src", `/images/image${selectedImageNumber}.avif`);
   }
   enableDisableNavButtons();
 });
