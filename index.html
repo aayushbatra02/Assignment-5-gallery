@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photo Gallery</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="/styles/styles.css" />
+  </head>
+  <body>
+    <div id="gallery-container">
+      <div id="image-modal">
+        <div id="image-container">
+          <img src="/images/image13.avif" id="selected-image" />
+          <div id="button-container">
+            <button id="previous-button">
+              <span class="icon"><i class="fa-solid fa-angles-left"></i></span
+              ><span> prev</span>
+            </button>
+            <button id="next-button">
+              <span>next </span><span class="icon"
+                ><i class="fa-solid fa-angles-right"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/89e9165f8b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./scripts/main.js"></script>
+  </body>
 </html>
