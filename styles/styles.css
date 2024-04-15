@@ -72,7 +72,7 @@ img {
 /*desktop large*/
 @media (min-width: 1440px) {
   #gallery-container {
-    margin-top: 5vh;
+    margin-top: 2vh;
     grid-gap: 1.2rem;
   }
 

@@ -6,7 +6,7 @@ const imageContainer = document.getElementById("image-container");
 const galleryContainer = document.getElementById("gallery-container");
 
 const data = {
-  "images": [
+  images: [
     "/images/image1.avif",
     "/images/image2.avif",
     "/images/image3.avif",
@@ -41,17 +41,16 @@ for (let i = 0; i < data.images.length; i++) {
   const image = document.createElement("img");
   image.classList.add("image");
   image.setAttribute("src", data.images[i]);
-  image.addEventListener("click", () => {
+  image.onclick = () => {
     imageModal.style.display = "flex";
     selectedImage.setAttribute("src", `/images/image${i + 1}.avif`);
     selectedImageNumber = i + 1;
-    enableDisableNavButtons();
-  });
+    manageNavigationButtons();
+  };
   galleryContainer.appendChild(image);
 }
 
-
-const enableDisableNavButtons = () => {
+const manageNavigationButtons = () => {
   if (selectedImageNumber === data.images.length) {
     nextButton.style.display = "none";
     prevoiusButton.style.visibility = "visible";
@@ -64,28 +63,34 @@ const enableDisableNavButtons = () => {
   }
 };
 
-nextButton.addEventListener("click", () => {
+nextButton.onclick = () => {
   if (selectedImageNumber < data.images.length) {
     selectedImageNumber++;
-    selectedImage.setAttribute("src", `/images/image${selectedImageNumber}.avif`);
+    selectedImage.setAttribute(
+      "src",
+      `/images/image${selectedImageNumber}.avif`
+    );
   }
-  enableDisableNavButtons();
-});
+  manageNavigationButtons();
+};
 
-prevoiusButton.addEventListener("click", () => {
+prevoiusButton.onclick = () => {
   if (selectedImageNumber >= 0) {
     selectedImageNumber--;
-    selectedImage.setAttribute("src", `/images/image${selectedImageNumber}.avif`);
+    selectedImage.setAttribute(
+      "src",
+      `/images/image${selectedImageNumber}.avif`
+    );
   }
-  enableDisableNavButtons();
-});
+  manageNavigationButtons();
+};
 
-imageModal.addEventListener("click", (e) => {
+imageModal.onclick = (e) => {
   // e.stopPropagation();
   imageModal.style.display = "none";
-});
+};
 
-imageContainer.addEventListener("click", (e) => {
+imageContainer.onclick = (e) => {
   //to avoid closing of main image container on click of imageContainer
   e.stopPropagation();
-});
+};
