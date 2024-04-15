@@ -5,53 +5,51 @@ const prevoiusButton = document.getElementById("previous-button");
 const imageContainer = document.getElementById("image-container");
 const galleryContainer = document.getElementById("gallery-container");
 
-const data = {
-  images: [
-    "/images/image1.avif",
-    "/images/image2.avif",
-    "/images/image3.avif",
-    "/images/image4.avif",
-    "/images/image5.avif",
-    "/images/image6.avif",
-    "/images/image7.avif",
-    "/images/image8.avif",
-    "/images/image9.avif",
-    "/images/image10.avif",
-    "/images/image11.avif",
-    "/images/image12.avif",
-    "/images/image13.avif",
-    "/images/image14.avif",
-    "/images/image15.avif",
-    "/images/image16.avif",
-    "/images/image17.avif",
-    "/images/image18.avif",
-    "/images/image19.avif",
-    "/images/image20.avif",
-    "/images/image21.avif",
-    "/images/image22.avif",
-    "/images/image23.avif",
-    "/images/image24.avif",
-  ],
-};
+const images = [
+  "/images/image1.avif",
+  "/images/image2.avif",
+  "/images/image3.avif",
+  "/images/image4.avif",
+  "/images/image5.avif",
+  "/images/image6.avif",
+  "/images/image7.avif",
+  "/images/image8.avif",
+  "/images/image9.avif",
+  "/images/image10.avif",
+  "/images/image11.avif",
+  "/images/image12.avif",
+  "/images/image13.avif",
+  "/images/image14.avif",
+  "/images/image15.avif",
+  "/images/image16.avif",
+  "/images/image17.avif",
+  "/images/image18.avif",
+  "/images/image19.avif",
+  "/images/image20.avif",
+  "/images/image21.avif",
+  "/images/image22.avif",
+  "/images/image23.avif",
+  "/images/image24.avif",
+];
 
 let selectedImageNumber;
 
 //create images
-for (let i = 0; i < data.images.length; i++) {
+for (let i = 0; i < images.length; i++) {
   const image = document.createElement("img");
   image.classList.add("image");
-  image.setAttribute("src", data.images[i]);
+  image.setAttribute("src", images[i]);
   image.onclick = () => {
     imageModal.style.display = "flex";
     selectedImage.setAttribute("src", `/images/image${i + 1}.avif`);
     selectedImageNumber = i + 1;
-    manageNavigationButtons();
+    enableDisableNavButtons();
   };
   galleryContainer.appendChild(image);
 }
 
-const manageNavigationButtons = () => {
-  if (selectedImageNumber === data.images.length) {
+const enableDisableNavButtons = () => {
+  if (selectedImageNumber === images.length) {
     nextButton.style.display = "none";
     prevoiusButton.style.visibility = "visible";
   } else if (selectedImageNumber === 1) {
@@ -64,14 +62,14 @@ const manageNavigationButtons = () => {
 };
 
 nextButton.onclick = () => {
-  if (selectedImageNumber < data.images.length) {
+  if (selectedImageNumber < images.length) {
     selectedImageNumber++;
     selectedImage.setAttribute(
       "src",
       `/images/image${selectedImageNumber}.avif`
     );
   }
-  manageNavigationButtons();
+  enableDisableNavButtons();
 };
 
 prevoiusButton.onclick = () => {
@@ -82,7 +80,7 @@ prevoiusButton.onclick = () => {
       `/images/image${selectedImageNumber}.avif`
     );
   }
-  manageNavigationButtons();
+  enableDisableNavButtons();
 };
 
 imageModal.onclick = (e) => {
